@@ -1,19 +1,18 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <google-map />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import GoogleMap from "./components/GoogleMap";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    GoogleMap
   }
-}
+};
 </script>
 
 <style>
