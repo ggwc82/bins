@@ -1,21 +1,17 @@
-# bins
+# Bins
 
-> A Vue.js project
+## Description
+A real-time web application that will allow users to report their missed bin collections, and be able to view, in real-time, where others have reported missed collections within a given time period. The data can be useful to identify and highlight reoccuring problem spots.
 
-## Build Setup
+## Technology
+A mobile first responsive web app built using Vue.js 2, Firebase and Google Maps API.
 
-``` bash
-# install dependencies
-npm install
+## User Stories
 
-# serve with hot reload at localhost:8080
-npm run dev
+* As a user, so that I can view all logged missed collections, I want to be able to see a google map view with markers upon loading the page.
 
-# build for production with minification
-npm run build
+* As a user, so that I can report a missed collection, I want to be given a choice of reporting a green/blue/brown bin.
 
-# build for production and view the bundle analyzer report
-npm run build --report
-```
+* As a user, so that I can report a missed collection, I want to be able to drop a coloured marker on the map.
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+* As an admin, so that I can provide up-to-date statistics, I want to be able to set the current time period.
