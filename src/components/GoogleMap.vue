@@ -1,12 +1,18 @@
 <template>
   <div>
     <div>
-      <h2>Search and add a pin</h2>
+      <h2>Search for an address and mark your missed bin collection</h2>
       <label>
         <gmap-autocomplete
           @place_changed="setPlace">
         </gmap-autocomplete>
-        <button @click="addMarker">Add</button>
+        <button @click="addMarker('blue')">Search</button>
+        <div>
+          <button @click="addMarker('blue')">Add Blue Bin</button>
+          <button @click="addMarker('green')">Add Green Bin</button>
+          <button @click="addMarker('brown')">Add Brown Bin</button>
+        </div>
+
       </label>
       <br/>
 
@@ -14,13 +20,16 @@
     <br>
     <gmap-map
       :center="center"
-      :zoom="12"
-      style="width:100%;  height: 400px;"
+      :options="{scrollwheel: false, disableDefaultUI: true, mapStyle} "
+      :zoom="16"
+      style="width:80%;  height: 600px;"
     >
       <gmap-marker
         :key="index"
         v-for="(m, index) in markers"
         :position="m.position"
+        :draggable="true"
+        :icon="m.icon"
         @click="center=m.position"
       ></gmap-marker>
     </gmap-map>
@@ -34,15 +43,15 @@ export default {
     return {
       // default to Montreal to keep it simple
       // change this to whatever makes sense
-      center: { lat: 45.508, lng: -73.587 },
+      center: { lat: 51.4895, lng: 0.3108 },
       markers: [],
       places: [],
-      currentPlace: null
+      currentPlace: null,
     };
   },
 
   mounted() {
-    this.geolocate();
+    // this.geolocate();
   },
 
   methods: {
@@ -50,16 +59,20 @@ export default {
     setPlace(place) {
       this.currentPlace = place;
     },
-    addMarker() {
+    addMarker(colour) {
+      console.log('addmarker');
       if (this.currentPlace) {
         const marker = {
           lat: this.currentPlace.geometry.location.lat(),
           lng: this.currentPlace.geometry.location.lng()
         };
-        this.markers.push({ position: marker });
+        
+        this.markers.push({ position: marker, icon: {url: require("../assets/bin_" + colour + ".svg")}});
         this.places.push(this.currentPlace);
         this.center = marker;
-        this.currentPlace = null;
+        // this.currentPlace = null;
+        // console.log(this.places);
+        console.log(this.markers);
       }
     },
     geolocate: function() {
